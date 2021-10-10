@@ -20,13 +20,12 @@ const HandDetection = () => {
 
   // 충돌 테스트용 마우스 이벤트
   /*window.addEventListener('mousemove', (event) => {
-    const x = event.clientX;
-    const y = event.clientY;
+    const x = event.clientX - CIRCLE_RADIUS;
+    const y = event.clientY - CIRCLE_RADIUS;
 
     if(targetRef.current) {
       targetRef.current.style.display = 'block';
-      targetRef.current.style.left = `${x}px`;
-      targetRef.current.style.top = `${y}px`;
+      targetRef.current.style.transform = `translate(${x}px, ${y}px)`;
     }
   });*/
 
@@ -64,7 +63,7 @@ const HandDetection = () => {
   
   useEffect(() => {
     console.log('[ HandDetection ] hands model is loaded');
-
+/*
     const hands = new Hands({locateFile: (file) => {
       return `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.1/${file}`;
     }});
@@ -87,7 +86,7 @@ const HandDetection = () => {
       });
       camera.start();
     }
-
+*/
   }, [ onResults ]);
 
   return (

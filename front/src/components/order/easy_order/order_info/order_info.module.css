@@ -1,0 +1,31 @@
+.order {
+  height: 20%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2px;
+  font-size: 2vw;
+}
+
+.orderNum {
+  border-radius: 50%;
+  background-color: white;
+  width: 3vw;
+  height: 3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin: 0 1vw;
+}
+
+.menu {
+  margin: 0 1vw;
+}
+
+.count {
+  font-weight: bold;
+}
+
+.price {
+  margin-left: auto;
+}

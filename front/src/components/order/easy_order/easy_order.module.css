@@ -1,0 +1,104 @@
+.easyOrder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.headerWrapper {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
+}
+.homeIcon {
+  width: 8vw;
+  height: 8vw;
+  margin-right: 2vw;
+  background-color: #fac53f;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 2px 2px #dbdbdb;
+}
+
+.sectionWrapper {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.leftButton,
+.rightButton {
+  background-color: #fac53f;
+  width: 8%;
+  height: 70%;
+  margin: 0 0.5%;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 6vw;
+  box-shadow: 1px 1px 2px 2px #dbdbdb;
+}
+.menuSection {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  width: 80%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.footerWrapper {
+  background-color: #cbcbcb;
+  width: 100%;
+  height: 25%;
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.orderListWrapper {
+  width: 50%;
+  height: 90%;
+}
+
+.totalPriceWrapper {
+  width: 20%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.totalPriceText {
+  font-weight: bold;
+  font-size: 4vw;
+}
+.totalPrice {
+  color: #21bb1e;
+  font-weight: bold;
+  font-size: 4vw;
+}
+
+.payButton {
+  background-color: #fac53f;
+  width: 20%;
+  height: 60%;
+  border-radius: 8px;
+  color: black;
+  font-size: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 2px 2px #ababab;
+}

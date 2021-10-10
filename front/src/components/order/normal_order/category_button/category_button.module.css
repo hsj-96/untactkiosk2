@@ -1,0 +1,18 @@
+.category {
+  background-color: #fac53f;
+  width: 15%;
+  height: 90%;
+  border-radius: 8px;
+  box-shadow: 1px 1px 2px 2px #dbdbdb;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected {
+  color: black;
+  background-color: white;
+}

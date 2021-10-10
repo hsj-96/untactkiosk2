@@ -1,0 +1,56 @@
+.menuCard {
+  position: relative;
+  min-width: 30%;
+  height: 90%;
+  background-color: white;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  box-shadow: 1px 1px 2px 2px #dbdbdb;
+  transition: all 0.5s ease;
+  flex: 0.3 0.3;
+}
+
+.medal {
+  position: absolute;
+  top: 0;
+  width: 30%;
+  z-index: 10;
+}
+
+.imgWrapper {
+  position: relative;
+  margin-top: 10%;
+  width: 100%;
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image {
+  max-width: 60%;
+  max-height: 90%;
+}
+
+.name {
+  width: 90%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.3vw;
+  font-weight: bold;
+  word-break: keep-all;
+  text-align: center;
+}
+
+.price {
+  width: 100%;
+  height: 10%;
+  text-align: center;
+  font-size: 2.3vw;
+  font-weight: bold;
+  color: #21bb1e;
+}

@@ -1,0 +1,51 @@
+.payment {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+.header {
+  background: #fcf4df;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 5vw;
+}
+
+.sectionWrapper {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.warningText {
+  margin: 0.3vh;
+  color: #ff5f5f;
+}
+
+.image {
+  width: 40%;
+  height: 60%;
+}
+
+.text {
+  width: 50%;
+  height: 15%;
+  background: #e9eff2;
+  border-radius: 0.5em;
+  font-size: 3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

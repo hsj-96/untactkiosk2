@@ -3,6 +3,7 @@ import styles from './hand_detection.module.css';
 import { Hands } from '@mediapipe/hands';
 import * as cam from "@mediapipe/camera_utils";
 import Webcam from 'react-webcam';
+import { setPointerPos } from '../../common/pointer_controller';
 
 const FINGER_INDEX = 8;
 const NOISE_CORRECTION_VALUE = 1; // 손떨림 보정 값 (숫자 커질수록 더 안움직임)
@@ -26,6 +27,7 @@ const HandDetection = () => {
     if(targetRef.current) {
       targetRef.current.style.display = 'block';
       targetRef.current.style.transform = `translate(${x}px, ${y}px)`;
+      setPointerPos(x, y);
     }
   });*/
 
@@ -50,20 +52,24 @@ const HandDetection = () => {
 
           prevPos.x = currPos.x;
           prevPos.y = currPos.y;
+
+          setPointerPos(x, y);
         }
       }
       else {
         targetRef.current.style.display = `none`;
+        setPointerPos(0, 0);
       }
     }
     else {
       targetRef.current.style.display = `none`;
+      setPointerPos(0, 0);
     }
   }, []);
   
   useEffect(() => {
     console.log('[ HandDetection ] hands model is loaded');
-/*
+
     const hands = new Hands({locateFile: (file) => {
       return `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.1/${file}`;
     }});
@@ -86,13 +92,13 @@ const HandDetection = () => {
       });
       camera.start();
     }
-*/
+
   }, [ onResults ]);
 
   return (
     <>
       <Webcam ref={webcamRef} className={styles.webcam}></Webcam>
-      <div ref={targetRef} className={styles.target}></div>
+      <div ref={targetRef} className={`${styles.target} circlePointer`}></div>
     </>
   );
 };

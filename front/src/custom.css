@@ -1,0 +1,15 @@
+.scale1 {
+  transform: scale(1.1) !important;
+}
+
+.scale2 {
+  transform: scale(1.2) !important;
+}
+
+.scale3 {
+  transform: scale(1.3) !important;
+}
+
+.border {
+  border: 0.5vw solid #f9783f !important;
+}

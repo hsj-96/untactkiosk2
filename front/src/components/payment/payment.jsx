@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from './payment.module.css';
+import { setPageStatus, initRefList } from '../../common/button_controller';
 
 const Payment = () => {
   const history = useHistory();
 
   useEffect(() => {
+    initRefList();
+    setPageStatus('payment');
     setTimeout(() => { 
       history.push('/');
+      setPageStatus('home');
     }, 3000);
   });
 

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './easy_order.module.css';
 import { useHistory } from 'react-router';
 import { priceToString } from '../../../common/price_func';
@@ -6,6 +6,7 @@ import MenuCard from './menu_card/menu_card';
 import CategoryButton from './category_button/category_button';
 import OrderInfo from './order_info/order_info';
 import Modal from './modal/modal';
+import { addRef, initRefList, setPageStatus } from '../../../common/button_controller';
 
 const EasyOrder = ({ menuByCategory, top3, categoryList, currCategory, setCurrCategory, onAddMenu, onDeleteMenu, orderList, userInfo }) => {
   const history = useHistory();
@@ -13,6 +14,15 @@ const EasyOrder = ({ menuByCategory, top3, categoryList, currCategory, setCurrCa
   const [ currCardIdx, setCurrCardIdx ] = useState(0);
   const [ currMenu, setCurrMenu ] = useState(null);
   const [ modalOpen, setModalOpen ] = useState(false);
+  const homeBtnRef= useRef(), leftBtnRef= useRef(), rightBtnRef= useRef(), payRef= useRef();
+
+  initRefList();
+  useEffect(() => {
+    addRef(homeBtnRef, 'easyOrder', `homeBtnRef`, 'click');
+    addRef(leftBtnRef, 'easyOrder', `leftBtnRef`, 'click');
+    addRef(rightBtnRef, 'easyOrder', `rightBtnRef`, 'click');
+    addRef(payRef, 'easyOrder', `payRef`, 'click');
+  });
 
   const setMenuList = () => {
     const arr = [];
@@ -55,6 +65,8 @@ const EasyOrder = ({ menuByCategory, top3, categoryList, currCategory, setCurrCa
   // ========== Header ========== //
   const onClickHome = () => {
     history.push('/');
+    initRefList();
+    setPageStatus('home');
   }
 
   const onClickCategory = (name) => {
@@ -94,10 +106,19 @@ const EasyOrder = ({ menuByCategory, top3, categoryList, currCategory, setCurrCa
     setCurrCardIdx(currCardIdx+3);
   };
 
+  function getCurrShownMenuList() {
+    return menuList.filter((data, idx) => {
+      if(idx >= currCardIdx && idx <= currCardIdx+2) {
+        return data;
+      }
+      return false;
+    }).map(data => data.menu);
+  }
+
   return (
     <div className={styles.easyOrder}>
       <div className={styles.headerWrapper}>
-      <div className={styles.homeIcon} onClick={onClickHome}><img src={`/images/icon/home.png`} alt="home icon" /></div>
+      <div ref={homeBtnRef} className={styles.homeIcon} onClick={onClickHome}><img src={`/images/icon/home.png`} alt="home icon" /></div>
         {
           categoryList.map((name, idx) => <CategoryButton key={idx} name={name} currCategory={currCategory} onClickCategory={onClickCategory} />)
         }
@@ -105,13 +126,13 @@ const EasyOrder = ({ menuByCategory, top3, categoryList, currCategory, setCurrCa
 
       <div className={styles.sectionWrapper}>
         <Modal open={modalOpen} close={closeModal} data={currMenu} userInfo={userInfo} onAddOrderData={onAddOrderData} onDeleteOrderData={onDeleteOrderData} />
-        <div className={styles.leftButton} onClick={onClickLeftButton}>◀︎</div>
+        <div ref={leftBtnRef} className={styles.leftButton} onClick={onClickLeftButton}>◀︎</div>
         <div ref={menuSectionRef} className={styles.menuSection}>
           {
-            menuList && menuList.map((data) => <MenuCard key={data.id} data={data} openModal={openModal} />)
+            menuList && menuList.map((data) => <MenuCard key={data.id} data={data} openModal={openModal} currShownMenuList={getCurrShownMenuList()} />)
           }
         </div>
-        <div className={styles.rightButton} onClick={onClickRightButton}>▶︎</div>
+        <div ref={rightBtnRef} className={styles.rightButton} onClick={onClickRightButton}>▶︎</div>
       </div>
       <div className={styles.footerWrapper}>
           <div className={styles.orderListWrapper}>
@@ -124,7 +145,7 @@ const EasyOrder = ({ menuByCategory, top3, categoryList, currCategory, setCurrCa
             <div className={styles.totalPriceText}>총 금액</div>
             <div className={styles.totalPrice}>{orderList && priceToString(getTotalPrice(orderList))} 원</div>
           </div>
-          <div className={styles.payButton} onClick={() => {history.push('/payment')}}>결제하기</div>
+          <div ref={payRef} className={styles.payButton} onClick={() => {history.push('/payment')}}>결제하기</div>
       </div>
     </div>
   );

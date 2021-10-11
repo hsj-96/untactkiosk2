@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './category_button.module.css';
+import { addRef } from '../../../../common/button_controller';
 
 const CategoryButton = ({ name, currCategory, onClickCategory }) => {
+  const categoryRef = useRef();
+
+  useEffect(() => {
+    addRef(categoryRef, 'normalOrder', `categoryRef_${name}`, 'click');
+  });
+
   const onClickButton = () => {
     onClickCategory(name);
   }
 
   return (
-    <div className={isSelected(name, currCategory)} onClick={onClickButton}>
+    <div ref={categoryRef} className={isSelected(name, currCategory)} onClick={onClickButton}>
       {name}
     </div>
   );

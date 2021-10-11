@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import styles from './app.module.css'
+import './custom.css';
 import * as faceapi from 'face-api.js';
 
 import HandDetection from './components/hand_detection/hand_detection';

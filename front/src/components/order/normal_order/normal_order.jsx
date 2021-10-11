@@ -6,6 +6,7 @@ import MenuCard from './menu_card/menu_card';
 import CategoryButton from './category_button/category_button';
 import OrderInfo from './order_info/order_info';
 import Modal from './modal/modal';
+import { addRef, initRefList, setPageStatus } from '../../../common/button_controller';
 
 const NormalOrder = ({ menuByCategory, top3, categoryList, currCategory, setCurrCategory, onAddMenu, onDeleteMenu, orderList, userInfo }) => {
   const history = useHistory();
@@ -14,6 +15,15 @@ const NormalOrder = ({ menuByCategory, top3, categoryList, currCategory, setCurr
   const [ currCardIdx, setCurrCardIdx ] = useState(3);
   const [ currMenu, setCurrMenu ] = useState(null);
   const [ modalOpen, setModalOpen ] = useState(false);
+  const homeBtnRef= useRef(), resultCloseRef= useRef(), payRef= useRef();
+
+  initRefList();
+  useEffect(() => {
+    addRef(homeBtnRef, 'normalOrder', `homeBtnRef`, 'click');
+    addRef(leftButtonRef, 'normalOrder', `leftBtnRef`, 'click');
+    addRef(rightButtonRef, 'normalOrder', `rightBtnRef`, 'click');
+    addRef(resultHeaderRef, 'normalOrder', `resultHeaderRef`, 'click');
+  });
 
   const setMenuList = () => {
     const arr = [];
@@ -60,6 +70,8 @@ const NormalOrder = ({ menuByCategory, top3, categoryList, currCategory, setCurr
   // ========== Header ========== //
   const onClickHome = () => {
     history.push('/');
+    initRefList();
+    setPageStatus('home');
   }
   
   const onClickCategory = (name) => {
@@ -123,15 +135,24 @@ const NormalOrder = ({ menuByCategory, top3, categoryList, currCategory, setCurr
   // ========== Footer ========== //
   const onClickFooter = () => {
     footerSectionRef.current.style.top = '20%';
+    setPageStatus('normalShowResult');
+    addRef(resultCloseRef, 'normalShowResult', `resultCloseRef`, 'click');
+    addRef(payRef, 'normalShowResult', `payRef`, 'click');
   }
   const onClickCloseFooterButton = () => {
     footerSectionRef.current.style.top = '90%';
+    setPageStatus('normalOrder');
+  }
+
+
+  function getCurrShownMenuList() {
+    return menuList[currCardIdx].menu;
   }
 
   return (
     <div className={styles.normalOrder}>
       <div className={styles.headerWrapper}>
-        <div className={styles.homeIcon} onClick={onClickHome}><img src={`/images/icon/home.png`} alt="home icon" /></div>
+        <div ref={homeBtnRef} className={styles.homeIcon} onClick={onClickHome}><img src={`/images/icon/home.png`} alt="home icon" /></div>
         {
           categoryList.map((name, idx) => <CategoryButton key={idx} name={name} currCategory={currCategory} onClickCategory={onClickCategory} />)
         }
@@ -142,7 +163,7 @@ const NormalOrder = ({ menuByCategory, top3, categoryList, currCategory, setCurr
         <div ref={leftButtonRef} className={styles.leftButton} onClick={onClickLeftButton}>◀</div>
         <div className={styles.menuSection}>
           {
-            menuList && menuList.map((data) => <MenuCard key={data.id} data={data} openModal={openModal} />)
+            menuList && menuList.map((data) => <MenuCard key={data.id} data={data} openModal={openModal} currShownMenuList={getCurrShownMenuList()} />)
           }
         </div>
         <div ref={rightButtonRef} className={styles.rightButton} onClick={onClickRightButton}>▶︎</div>
@@ -160,8 +181,8 @@ const NormalOrder = ({ menuByCategory, top3, categoryList, currCategory, setCurr
             <div className={styles.totalPrice}>{orderList && priceToString(getTotalPrice(orderList))} 원</div>
           </div>
           <div className={styles.footerButtonWrapper}>
-            <div className={styles.backButton} onClick={onClickCloseFooterButton}>뒤로가기</div>
-            <div className={styles.payButton} onClick={() => {history.push('/payment')}}>결제하기</div>
+            <div ref={resultCloseRef} className={styles.backButton} onClick={onClickCloseFooterButton}>뒤로가기</div>
+            <div ref={payRef} className={styles.payButton} onClick={() => {history.push('/payment')}}>결제하기</div>
           </div> 
       </div>
     </div>

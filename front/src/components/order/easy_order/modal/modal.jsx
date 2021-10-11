@@ -1,31 +1,48 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './modal.module.css';
 import { priceToString } from '../../../../common/price_func';
+import { addRef, setPageStatus } from '../../../../common/button_controller';
 
 const Modal = ({ open, close, data, userInfo, onAddOrderData, onDeleteOrderData }) => {
   const medal = data?.medal;
+  const closeModalRef= useRef(), addMenuRef= useRef(), deleteMenuRef= useRef();
+
+  useEffect(() => {
+    if(closeModalRef.current) {
+      addRef(closeModalRef, 'easyMenuSelect', `closeModalRef`, 'click');
+    }
+    if(addMenuRef.current) {
+      addRef(addMenuRef, 'easyMenuSelect', `addMenuRef`, 'click');
+    }
+    if(deleteMenuRef.current) {
+      addRef(deleteMenuRef, 'easyMenuSelect', `deleteMenuRef`, 'click');
+    }
+  }, [open]);
 
   const onClickAddButton = () => {
     const option = { size: 0, shot: 0, whip: 0 };
     onAddOrderData(data, option);
     close();
+    setPageStatus('easyOrder');
   }
 
   const onClickDeleteButton = () => {
     const option = { size: 0, shot: 0, whip: 0 };
     onDeleteOrderData(data, option);
     close();
+    setPageStatus('easyOrder');
   }
 
   const onClickCloseButton = () => {
     close();
+    setPageStatus('easyOrder');
   }
 
   return (
     <div className={ open ? `${styles.openModal} ${styles.modal}` : styles.modal }>
       { open ? (  
         <div className={styles.modalBox}>
-          <div className={styles.close} onClick={onClickCloseButton}> &times; </div>
+          <div ref={closeModalRef} className={styles.close} onClick={onClickCloseButton}> &times; </div>
 
           <div className={styles.menuInfoWrapper}>
             <div className={styles.menuInfo}>
@@ -44,8 +61,8 @@ const Modal = ({ open, close, data, userInfo, onAddOrderData, onDeleteOrderData 
               <div className={styles.description}>{data.description}</div>
             </div>
             <div className={styles.buttonSection}>
-              <div className={styles.add} onClick={onClickAddButton}>메뉴 추가</div>
-              <div className={styles.delete} onClick={onClickDeleteButton}>메뉴 삭제</div>
+              <div ref={addMenuRef} className={styles.add} onClick={onClickAddButton}>메뉴 추가</div>
+              <div ref={deleteMenuRef} className={styles.delete} onClick={onClickDeleteButton}>메뉴 삭제</div>
             </div>
           </div>
         </div>

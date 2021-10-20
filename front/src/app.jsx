@@ -85,7 +85,7 @@ const App = () => {
         const hour = new Date().getHours();
         const time = (hour >= 8 && hour <= 22) ? hour : 8;
         const sex = gender === 'male' ? 0 : 1;
-        const ageGroup = getAgeGroup(age);
+        const ageGroup = getAgeGroup(age+7);
         const info = {
           month: month,
           time: time,

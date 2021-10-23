@@ -1,5 +1,8 @@
+import { getMenuData, getPredictionByCategory } from './menu_method';
+
 async function getMenu() {
-  const requestOptions = {
+  return getMenuData();
+  /*const requestOptions = {
     method: 'POST',
     redirect: 'follow',
     headers:{
@@ -11,10 +14,14 @@ async function getMenu() {
   return await fetch('http://untactkiosk.cafe24app.com/menudata', requestOptions)
                 .then(result => result.json())
                 .catch(err => { console.log(err); return null; });
+  */
 };
 
 async function getPredict(userInfo) {
   const { month, time, sex, age } = userInfo;
+
+  return getPredictionByCategory(month, time, sex, age);
+  /*const { month, time, sex, age } = userInfo;
 
   const requestOptions = {
     method: 'POST',
@@ -28,7 +35,7 @@ async function getPredict(userInfo) {
   // test : http://localhost:8001/prediction | build : http://untactkiosk.cafe24app.com/prediction
   return await fetch('http://untactkiosk.cafe24app.com/prediction', requestOptions)
                 .then(result => result.json())
-                .catch(err => { console.log(err); return null; });
+                .catch(err => { console.log(err); return null; });*/
 };
 
 // 카테고리별 메뉴 정보 반환

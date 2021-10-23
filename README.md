@@ -5,6 +5,7 @@
 </p>
 <h1 align="center">사용자 친화적 비접촉 키오스크</h1>
 <p align="center">키오스크와 직접 접촉하지 않아도 카메라만을 이용하여 동작할 수 있는 키오스크 입니다.</p>
+<p align="center"><a href="https://blissful-chandrasekhar-bbc6d1.netlify.app/">데모 페이지</a></p>
 
 ## 기능 설명
 #### - 손가락 추적, 버튼 동작
@@ -60,14 +61,6 @@ $ cd front
 $ npm install
 $ cd ../server
 $ npm install
-
-# cors 설정 (확장앱 설치)
-확장앱 링크 :  https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=ko
-<p align="center">
-<img src="https://user-images.githubusercontent.com/55642464/136833472-c78e2a58-4db2-4f17-b03f-5ab046836662.png" height="150" />
-<img src="https://user-images.githubusercontent.com/55642464/136833486-2965b625-767e-4787-a815-aa2798cbce32.png" height="150" />
-</p>
-우측 상단 퍼즐모양 클릭 - Allow CORS 클릭 - 좌측 C 모양 빨간색으로 나타나도록 클릭 (테스트 종료 후 CORS 기능은 다시 끄기 !)
 
 # 실행 (front 폴더에서)
 $ cd front

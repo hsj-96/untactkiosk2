@@ -5,7 +5,7 @@
 </p>
 <h1 align="center">사용자 친화적 비접촉 키오스크</h1>
 <p align="center">키오스크와 직접 접촉하지 않아도 카메라만을 이용하여 동작할 수 있는 키오스크 입니다.</p>
-<p align="center"><a href="https://blissful-chandrasekhar-bbc6d1.netlify.app/">데모 페이지</a></p>
+<p align="center"><a href="https://untactkiosk.netlify.app/">데모 페이지</a></p>
 
 ## 기능 설명
 #### - 손가락 추적, 버튼 동작

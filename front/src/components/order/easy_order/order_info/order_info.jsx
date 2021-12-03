@@ -7,7 +7,7 @@ const OrderInfo = ({ num, data, last }) => {
       <div className={styles.orderNum}>{num}</div>
       <div className={styles.menu}>{data.menu}</div>
       <div className={styles.count}>{ last ? '' : `X ${data.count}` }</div>
-      <div className={styles.price}>{priceToString(data.price * data.count)} 원</div>
+      <div className={styles.price}>{priceToString(data.price)} 원</div>
     </div>
   );
 };

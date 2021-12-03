@@ -1,4 +1,12 @@
 import { getPointerPos } from './pointer_controller'; 
+import effectSound from './effectSound';
+import ES from './click.mp3';
+
+const es = effectSound(ES, 1);
+window.addEventListener('click', () => {
+  es.play();
+})
+
 
 let status = 'home'; // home | modeSelection | easyOrder easyMenuSelect | normalOrder normalMenuSelect normalShowResult
 function setPageStatus(value) {
